@@ -17,7 +17,7 @@ public class ApiExist implements Watcher {
 
     public static void main(String[] args) throws Exception {
         String path = "/zk-book";
-        zk = new ZooKeeper("127.0.0.1:2181", 5000,
+        zk = new ZooKeeper("127.0.0.1:32770", 5000,
                 new ApiExist());
         connectedSemaphore.await();
 
@@ -35,6 +35,7 @@ public class ApiExist implements Watcher {
         Thread.sleep(Integer.MAX_VALUE);
     }
 
+    @Override
     public void process(WatchedEvent event) {
         try {
             if (Event.KeeperState.SyncConnected == event.getState()) {

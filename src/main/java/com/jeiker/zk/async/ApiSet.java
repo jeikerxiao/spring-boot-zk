@@ -18,7 +18,7 @@ public class ApiSet implements Watcher {
     public static void main(String[] args) throws Exception {
 
         String path = "/zk-book";
-        zk = new ZooKeeper("127.0.0.1:2181", 5000, new ApiSet());
+        zk = new ZooKeeper("127.0.0.1:32770", 5000, new ApiSet());
         connectedSemaphore.await();
 
         zk.create(path, "123".getBytes(), ZooDefs.Ids.OPEN_ACL_UNSAFE, CreateMode.EPHEMERAL);
