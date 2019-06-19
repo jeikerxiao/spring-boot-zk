@@ -10,13 +10,13 @@ import java.util.concurrent.CountDownLatch;
  * Date: 2019/6/6 2:56 PM
  */
 public class ApiExist implements Watcher {
+
     private static CountDownLatch connectedSemaphore = new CountDownLatch(1);
     private static ZooKeeper zk;
 
     public static void main(String[] args) throws Exception {
         String path = "/zk-book";
-        zk = new ZooKeeper("127.0.0.1:32770", 5000, //
-                new ApiExist());
+        zk = new ZooKeeper("127.0.0.1:32770", 5000, new ApiExist());
         connectedSemaphore.await();
 
         zk.exists(path, true);
